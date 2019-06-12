@@ -1,0 +1,50 @@
+*{
+    box-sizing: border-box;
+    outline: dotted red 1px;
+
+}
+
+/* header {
+    background-color: blue;
+    height: 120px;
+
+} */
+
+nav {
+    padding-top: 30px;
+
+
+}
+
+nav li {
+    float: left;
+    height: 60px;
+    background-color: gold;
+    margin-right: 20px;
+}
+
+main li {
+    float: left;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;  
+    
+}
+
+main ul {
+    width: 600px;
+    overflow: hidden;
+    padding: 0;
+    margin: auto; 
+    
+}
+
+ul {
+    list-style: none;
+
+}
+
+img {
+    width: 200px;
+    height: 200px;
+}
