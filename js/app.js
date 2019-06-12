@@ -1,154 +1,135 @@
-// First, create a separate JS object literal (no constructor functions... yet) for each shop location that does the following:
-
-// Stores the min/max hourly customers, and the average cookies per customer, in object properties
-
-// Uses a method of that object to generate a random number of customers per hour. Objects/Math/random
-
-// Calculate and store the simulated amounts of cookies purchased for each hour at each location using average cookies purchased and the random number of customers generated
-
-// Store the results for each location in a separate array... perhaps as a property of the object representing that location
-
-// Display the values of each array as unordered lists in the browser
-
-// Calculating the sum of these hourly totals; your output for each location should look like this:
-// Location	Min / Cust	Max / Cust	Avg Cookie / Sale
-// 1st and Pike	23	65	6.3
-// SeaTac Airport	3	24	1.2
-// Seattle Center	11	38	3.7
-// Capitol Hill	20	38	2.3
-// Alki	2	16	4.6
-
 'use strict';
-//my first object 'firstandpike' with the property of mincust, maxcust, and avgCookiesale and each property has a value
 
-var salesData = document.getElementById('saledata');
-var firstAndPike = {
-  locationName: '1st And Pike',
-  minCust: 23,//the min. number of customers per hr.
-  maxCust: 65,//the max. number of customers per hr.
-  avgCookieSale: 6.3,// the average number of cookies purchased per customer
-  storeCookies: [],
+var tableForStore = document.getElementById('table-for-store');
+var shop = [];
+var openHour = ['6:00am','7:00am','8:00am','9:00am','10:00am','11:00am','12:00pm','1:00pm','2:00pm','3:00pm','4:00pm','5:00pm','6:00pm','7:00pm','8:00pm'];
 
-  makeRandomFirstAndPike: function (){
-    var minimum = Math.floor(this.minCust);
-    var maximum = Math.floor(this.maxCust);
 
-    var numberCustomer = Math.random() * (maximum - minimum +1) + minimum;
-    var cookiesPerHour = Math.round(numberCustomer * this.avgCookieSale);
-    return cookiesPerHour;
-  }
+// creating my constructor
+var SalmonCookieShop = function(location, minCust, maxCust, avgCookiesPerCust, avgCookiesPerHour = []){
+  this.location = location;
+  this.minCust = minCust;
+  this.maxCust = maxCust;
+  this.avgCookiesPerCust = avgCookiesPerCust;
+  this.avgCookiesPerHour = avgCookiesPerHour;
 };
+  
 
-firstAndPike.eachHour = function(){
-  for (var i = 0; i < 15; i++){
-    this.storeCookies.push(this.makeRandomFirstAndPike());
-  }
+// creating my objects for each shop
+shop.push(new SalmonCookieShop('1st and pike', 23, 65, 6.3));
+shop.push(new SalmonCookieShop('SeaTac Airport', 3, 24, 1.2));
+shop.push(new SalmonCookieShop('Seattle Center', 11, 38, 3.7));
+shop.push(new SalmonCookieShop('Capitol Hill', 20, 38, 2.3));
+shop.push(new SalmonCookieShop('Alki', 2, 16, 4.6));
+
+
+//creating salmoncookis shop object method
+//to find number of customers per hour
+SalmonCookieShop.prototype.numberCustomerPerHour = function(){
+  return Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
 };
-console.log(firstAndPike.storeCookies);
-
-
-firstAndPike.mySaleData = function(){
-  this.eachHour();
-  var openHour = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm']
-
-
-  var liEl = document.createElement('li');
-  var h2 = document.createElement('h2');
-  h2.textContent= this.locationName;
-  liEl.appendChild(h2);
-  var ulEl = document.createElement('ul');
-
-
-
+//to find number of cookies per hour
+SalmonCookieShop.prototype.cookiesPerHour = function(){
+  var customer = this.numberCustomerPerHour();
+  var cookies = this.avgCookiesPerCust * customer;
+  return Math.ceil(cookies);
+};
+//to find total number of cookies per hour
+SalmonCookieShop.prototype.totalCookiesPerHour = function(){
   var total = 0;
-
-  for (var i=0; i < this.storeCookies.length; i++){
-    var liElHour = document.createElement('li');
-    liElHour.textContent= openHour[i] + ': ' + this.storeCookies[i] + ' cookies';
-
-    ulEl.appendChild(liElHour);
-    total = total + this.storeCookies[i];
-
+  for(var i = 0; i < openHour.length; i++){
+    var totalcookHour = this.cookiesPerHour();
+    this.avgCookiesPerHour.push(totalcookHour);
+    total += totalcookHour;
   }
-
-  var totalLi = document.createElement('li');
-  totalLi.textContent= 'Total ' + ': ' + total + ' cookies';
-  ulEl.appendChild(totalLi);
-  liEl.appendChild(ulEl);
-  salesData.appendChild(liEl);
-
-
+  this.total = total;
 };
 
-firstAndPike.mySaleData();
-
-
-
-//Location seaTacAirport//////////////////
-
-var seaTacAirport = {
-  locationName: 'Sea Tac Airport',
-  minCust: 23,//the min. number of customers per hr.
-  maxCust: 65,//the max. number of customers per hr.
-  avgCookieSale: 6.3,// the average number of cookies purchased per customer
-  storeCookies: [],
-
-  makeRandomSeaTacAirport: function (){
-    var minimum = Math.floor(this.minCust);
-    var maximum = Math.floor(this.maxCust);
-
-    var numberCustomer = Math.random() * (maximum - minimum +1) + minimum;
-    var cookiesPerHour = Math.round(numberCustomer * this.avgCookieSale);
-    return cookiesPerHour;
+// make a table
+function makeHeader(){
+  var theadEl = document.createElement('thread');
+  var trEl = document.createElement('tr');
+  var thEl = document.createElement('th');
+  thEl.textContent = '';
+  trEl.appendChild(thEl);
+  for(var i = 0; i < openHour.length; i++){
+    //var thEl = document.createElement('th');
+    thEl.textContent = openHour[i];
+    trEl.appendChild(thEl);
   }
-};
+  thEl = document.createElement('th');
+  thEl.textContent = 'Daily Location Total';
+  theadEl.appendChild(trEl);
+  trEl.appendChild(thEl);
+  tableForStore.appendChild(theadEl);
+}
 
-seaTacAirport.eachHour = function(){
-  for (var i = 0; i < 15; i++){
-    this.storeCookies.push(this.makeRandomSeaTacAirport());
-  }
-};
-console.log(seaTacAirport.storeCookies);
-
-
-seaTacAirport.mySaleData = function(){
-  this.eachHour();
-  var openHour = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm']
-
-
-  var liEl = document.createElement('li');
-  var h2 = document.createElement('h2');
-  h2.textContent= this.locationName;
-  liEl.appendChild(h2);
-  var ulEl = document.createElement('ul');
-
-
-
-  var total = 0;
-
-  for (var i=0; i < this.storeCookies.length; i++){
-    var liElHour = document.createElement('li');
-    liElHour.textContent= openHour[i] + ': ' + this.storeCookies[i] + ' cookies';
-
-    ulEl.appendChild(liElHour);
-    total = total + this.storeCookies[i];
-
+// Add hourly sales to the table for each stores/shopes
+SalmonCookieShop.prototype.addRaw = function(){
+  if(this.avgCookiesPerHour.length === 0){
+    this.cookiesPerHour();
   }
 
-  var totalLi = document.createElement('li');
-  totalLi.textContent= 'Total ' + ': ' + total + ' cookies';
-  ulEl.appendChild(totalLi);
-  liEl.appendChild(ulEl);
-  salesData.appendChild(liEl);
+  var trEl = document.createElement('tr');
+  var tdEl = document.createElement('td');
+  tdEl.textContent = this.location;
+  trEl.appendChild(tdEl);
 
+  for (var j = 0; j < this.avgCookiesPerHour.length; j++){
+    tdEl = document.createElement('td');
+    tdEl.textContent = this.avgCookiesPerHour[j];
+    trEl.appendChild(tdEl);
+  }
 
+  tdEl = document.createElement('td');
+  tdEl.textContent = this.total;
+  trEl.appendChild(tdEl);
+  tableForStore.appendChild(trEl);
 };
 
-seaTacAirport.mySaleData();
+function totalPerLocation(){
+  var totalsInLocation = 0;
+  for (var i =0; i < shop.length; i++){
+    totalsInLocation += shop[i].total;
+  }
+  return totalsInLocation;
+}
 
+//add total to EACH ROW
+function makeTotalInRow(){
+  var tfootEl = document.createElement('tfoot');
+  var trEl = document.createElement('tr');
+  var tdEl = document.createElement('td');
+  tdEl.textContent = 'Total';
+  trEl.appendChild(tdEl);
 
+  for(var i = 0; i < openHour.length; i++){
+    tdEl = document.createElement('td');
+    var totalPerHour = 0;
+    for (var j = 0; j < shop.length; j++){
+      totalPerHour += shop[j].avgCookiesPerHour[i];
+    }
+    tdEl.textContent = totalPerHour;
+    trEl.appendChild(tdEl);
+  }
 
+  tdEl = document.createElement('td');
+  tdEl.textContent = totalPerLocation();
+  trEl.appendChild(tdEl);
+  tfootEl.appendChild(trEl);
+  tableForStore.appendChild(tfootEl);
+}
 
+//populate the page
+function makePage(){
+  makeHeader();
+  for(var i = 0; i <shop.length; i++){
+    shop[i].addRaw();
+  }
+  makeTotalInRow();
+}
+
+makePage();
 
 
 
