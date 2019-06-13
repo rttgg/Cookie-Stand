@@ -130,7 +130,20 @@ function makePage(){
 }
 
 makePage();
+var form = document.getElementById('shop form');
+var handleFormSubmit = function(formSubmitEvent){
+  formSubmitEvent.preventDefault();
+  var locationNameForm = formSubmitEvent.target['locationName'].value;
+  var minCustForm = formSubmitEvent.target['minCust'].value;
+  var maxCustForm = formSubmitEvent.target['maxCust'].value;
+  var avgCookieForm = formSubmitEvent.target['avgCookies'].value;
+  var newShop = new SalmonCookieShop(locationNameForm,minCustForm,maxCustForm,avgCookieForm);
+  shop.push(newShop);
+  console.log(shop);
+};
 
+
+form.addEventListener('submit', handleFormSubmit);
 
 
 
