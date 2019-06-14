@@ -156,12 +156,33 @@ var putTheTime = function(){
     thEl.textContent = 'Daily Location Total';
     storeNameTBEl.appendChild(thEl);
   }
+<<<<<<< HEAD
 };
 
 //this will be considered the master function to perfrom most of what needs to happen
 var doAllFunction = function(SalmonCookieShop){
   SalmonCookieShop.addRaw(SalmonCookieShop, SalmonCookieShop.locationName);
 };
+=======
+  makeTotalInRow();
+}
+
+makePage();
+var form = document.getElementById('shop form');
+var handleFormSubmit = function(formSubmitEvent){
+  formSubmitEvent.preventDefault();
+  var locationNameForm = formSubmitEvent.target['locationName'].value;
+  var minCustForm = formSubmitEvent.target['minCust'].value;
+  var maxCustForm = formSubmitEvent.target['maxCust'].value;
+  var avgCookieForm = formSubmitEvent.target['avgCookies'].value;
+  var newShop = new SalmonCookieShop(locationNameForm,minCustForm,maxCustForm,avgCookieForm);
+  shop.push(newShop);
+  console.log(shop);
+};
+
+
+form.addEventListener('submit', handleFormSubmit);
+>>>>>>> ba2fd8ab776357e338cfa7af42b15b7cbc7d064a
 
 var callingDoAllFunction = function(shopArray){
   for (var i = 0; i < shopArray.length; i++){
