@@ -1,50 +1,59 @@
-*{
-    box-sizing: border-box;
-    outline: dotted red 1px;
 
-}
+  
 
-/* header {
-    background-color: blue;
+header {
+    background-color:black;
     height: 120px;
-
-} */
-
-nav {
-    padding-top: 30px;
-
-
-}
-
-nav li {
+  }
+ 
+  nav li {
     float: left;
-    height: 60px;
-    background-color: gold;
+    height: 60px; 
     margin-right: 20px;
-}
-
-main li {
-    float: left;
-    width: 200px;
-    white-space: nowrap;
-    overflow: hidden;  
-    
-}
-
-main ul {
-    width: 600px;
-    overflow: hidden;
-    padding: 0;
-    margin: auto; 
-    
-}
-
-ul {
     list-style: none;
+  }
+  
+  a {
+    font-size: 35px;
+  }
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    table-layout: fixed;
+    outline-style: solid;
+  }
+  
+  table {
+    width: 50%;
+    border-collapse: collapse;
+  }
+  
+  th {
+    background: #333; 
+    color: white; 
+    font-weight: bold;
+  }
+  th, td {
+      background: #333;
+    padding: 6px; 
+    border: 1px solid #ccc; 
+    text-align: left; 
+  }
+  *{
+    font-size: 9px;
+    background-color: #333;
+    color: white;
+  }
+  
+  img{
+    width: 20%;
+  }
 
-}
+  ul{
+      color: mediumslateblue;
+  }
 
-img {
-    width: 200px;
-    height: 200px;
-}
+  form {
+      width: 50%;
+
+  }
