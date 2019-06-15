@@ -1,5 +1,6 @@
 
 'use strict';
+
 // I will build objects using the min customers, max customer and average cookie sales.
 //This will be done using the locations as variables
 
@@ -24,10 +25,10 @@ var openAt6am = function(i){
   var cookiesPerHour = [];
   if(i === 12){
     cookiesPerHour[i] = i +'pm';
-    console.log(cookiesPerHour[i]);
+   
   }
   cookiesPerHour[i] = i +'am';
-  console.log(cookiesPerHour[i]);
+
   return cookiesPerHour;
 };
 
@@ -74,7 +75,7 @@ SalmonCookieShop.prototype.randomCookiesSales = function(randomCustomer,cooikesS
       cookiesPerHour.push(Math.floor(calcSales));
     }
   }
-  console.log(cookiesPerHour);
+ 
   for(var j = 0; j <=8;j++){
     calcSales = randomCustomer * avgCookies;
     if(j !== 0){
@@ -97,6 +98,9 @@ SalmonCookieShop.prototype.randomCookiesSales = function(randomCustomer,cooikesS
 //td element will be created and will add the location
 //next we can add text to the td and the stores will be in.
 SalmonCookieShop.prototype.addingToDOM = function(cooikesSoldArr, shopName){
+  //TODO
+  // make a tr
+  // put the tds in the new one
   tdEl = document.createElement('td');
   tdEl.textContent = shopName;
 
@@ -156,33 +160,12 @@ var putTheTime = function(){
     thEl.textContent = 'Daily Location Total';
     storeNameTBEl.appendChild(thEl);
   }
-<<<<<<< HEAD
 };
 
 //this will be considered the master function to perfrom most of what needs to happen
 var doAllFunction = function(SalmonCookieShop){
   SalmonCookieShop.addRaw(SalmonCookieShop, SalmonCookieShop.locationName);
 };
-=======
-  makeTotalInRow();
-}
-
-makePage();
-var form = document.getElementById('shop form');
-var handleFormSubmit = function(formSubmitEvent){
-  formSubmitEvent.preventDefault();
-  var locationNameForm = formSubmitEvent.target['locationName'].value;
-  var minCustForm = formSubmitEvent.target['minCust'].value;
-  var maxCustForm = formSubmitEvent.target['maxCust'].value;
-  var avgCookieForm = formSubmitEvent.target['avgCookies'].value;
-  var newShop = new SalmonCookieShop(locationNameForm,minCustForm,maxCustForm,avgCookieForm);
-  shop.push(newShop);
-  console.log(shop);
-};
-
-
-form.addEventListener('submit', handleFormSubmit);
->>>>>>> ba2fd8ab776357e338cfa7af42b15b7cbc7d064a
 
 var callingDoAllFunction = function(shopArray){
   for (var i = 0; i < shopArray.length; i++){
@@ -203,6 +186,8 @@ var handleFormSubmit = function(formSubmitEvent){
   var newShop = new SalmonCookieShop(locationNameForm,minCustForm,maxCustForm,avgCookieForm);
   shopArray.push(newShop);
   console.log(shopArray);
+  //to do add / call function to update the store table
+  callingDoAllFunction(shopArray);
 };
 
 putTheTime();
