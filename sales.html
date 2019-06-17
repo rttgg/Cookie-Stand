@@ -1,64 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Sales page</title>
-</head>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <link rel="stylesheet" href="./css/style.css">
+            <title>Pat's Salmon Cookies</title>
+        </head>
+        <body>
+            <header> 
+                    <!-- <img src = "salmon.png" id="salmonpng" > -->
+                <nav> 
+                    <ul>
+                        <li id="title"><a href="./index.html">Home</a></li>
+                    <li id="sales"><a href="./sales.html">Sales</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <main>
+                <form id="add-store-form">
+                    <fieldset>
+                        <legend>Form to add New Location, Customers, and Cookies</legend>
+                        <div>
+                            <label for="location">Location</label>
+                            <input id="location" name="">
+                        </div>
+                        <div>
+                            <label for="minCust">Minimum number of Customers</label>
+                            <input id="minCust" name="minCust">
+                        </div>
+                        <div>
+                            <label for="maxCust">Maximum number of Customers</label>
+                            <input id="maxCust" name="maxCust">
+                        </div>
+                        <div>
+                            <label for="avgCookies">Average Cookies per Customers</label>
+                            <input id="avgCookies." name="avgCookies">
+                        </div>
+                        <div>
+                            <input type="submit" name="Add store">
+                        </div>
+                    </fieldset>
+                </form>
+                <table id="store-table"></table>
+                <div><img src="./family.jpg"></div>
+                </main>
+            <script src="./js/app.js"></script>
+        </body>
+        </html>
 
-<body>
-    <header> 
-        <nav> 
-            <ul>
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./sales.html">Sales</a></li>
-            </ul>
-        </nav>
-    </header>
-  
-    <div id="masterImage">
-    <div id="addImageURL">
-    </div>
-  </div>
-  <!-- <table id="table head"></table>
-  <table id="1st and Pike"></table>
-  <table id="SeaTac Airport"></table>
-  <table id="Seattle Center"></table>
-  <table id="Capitol Hill"></table>
-  <table id="Alki"></table> -->
-
-  <table id="hasHeaderAndAllOtherStores">
-
-  </table>
-
-  <!-- //making form submit -->
-
-    <form id="shop form">
-        <fieldset>
-            <legend>
-                Shop Form
-            </legend>
-            <label for="locationName">Shop Name</label>
-            <input name="locationName" type="text">
-
-            <label for="minCust">Minimum Customers</label>
-            <input name="minCust" type="text">
-
-            <label for="maxCust">Maximum Customers</label>
-            <input name="maxCust" type="text">
-
-            <label for="avgCookies">Average Cookies</label>
-            <input name="avgCookies" type="text">
-
-            <input type="submit">
-
-        </fieldset>
-    </form>
-<script src="./js/app.js"></script>
-
-</body>
-</html>
+        
 
 
 
-    
+
+
+            
